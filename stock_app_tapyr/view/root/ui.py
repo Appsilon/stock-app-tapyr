@@ -1,31 +1,56 @@
+from pathlib import Path
+
+import pandas as pd
+from faicons import icon_svg
 from shiny import ui
+from shinywidgets import output_widget
+
+from stock_app_tapyr.logic.stocks import stocks
+
+# Default to the last 6 months
+end = pd.Timestamp.now()
+start = end - pd.Timedelta(weeks=26)
+
+app_dir = Path(__file__).parent
 
 
 def get_dashboard_ui() -> ui.Tag:
-    return ui.page_fluid(
-        # This example shows how custom PyShiny apps can be!
-        ui.card(
-            ui.row(
-                ui.column(
-                    7,
-                    ui.h1(
-                        ui.span("Tapyr", style="color: #486590; font-size: 3rem;"),
-                        " | PyShiny Template by ",
-                        ui.span("Appsilon", style="color: #007bff; font-size: 3rem;"),
-                    ),
-                    ui.a(
-                        "Start with the docs!",
-                        href="https://tapyr.appsilon.com/",
-                        class_="docs-link",
-                        data_testid="docs-link",
-                    ),
-                    style="padding: 2rem;",
-                ),
-                ui.column(
-                    5,
-                    ui.img(src="images/tapyr.png", style="width: 300px; display: block; margin: 0 auto;"),
-                ),
-            ),
+    return ui.page_sidebar(
+        ui.sidebar(
+            ui.input_selectize("ticker", "Select Stocks", choices=stocks, selected="AAPL"),
+            ui.input_date_range("dates", "Select dates", start=start, end=end),
         ),
-        style="display: flex; justify-content: center; align-items: center; height: 100vh;",
+        ui.layout_column_wrap(
+            ui.value_box(
+                "Current Price",
+                ui.output_ui("price"),
+                showcase=icon_svg("dollar-sign"),
+            ),
+            ui.value_box(
+                "Change",
+                ui.output_ui("change"),
+                showcase=ui.output_ui("change_icon"),
+            ),
+            ui.value_box(
+                "Percent Change",
+                ui.output_ui("change_percent"),
+                showcase=icon_svg("percent"),
+            ),
+            fill=False,
+        ),
+        ui.layout_columns(
+            ui.card(
+                ui.card_header("Price history"),
+                output_widget("price_history"),
+                full_screen=True,
+            ),
+            ui.card(
+                ui.card_header("Latest data"),
+                ui.output_data_frame("latest_data"),
+            ),
+            col_widths=[9, 3],
+        ),
+        ui.include_css(app_dir / "styles.css"),
+        title="Stock explorer",
+        fillable=True,
     )

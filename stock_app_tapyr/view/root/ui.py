@@ -1,3 +1,4 @@
+from datetime import date
 from pathlib import Path
 
 import pandas as pd
@@ -9,7 +10,10 @@ from stock_app_tapyr.logic.stocks import stocks
 
 # Default to the last 6 months
 end = pd.Timestamp.now()
-start = end - pd.Timedelta(weeks=26)
+start_td = end - pd.Timedelta(weeks=26)
+if not isinstance(start_td, date):
+    raise ValueError("This will never happen")
+start = start_td.date()
 
 app_dir = Path(__file__).parent
 

@@ -25,7 +25,7 @@ def server(input: Inputs, output: Outputs, session: Session):
         return get_ticker().history(start=dates[0], end=dates[1])
 
     @reactive.calc
-    def get_change():
+    def get_change() -> float:
         close = get_data()["Close"]
         return close.iloc[-1] - close.iloc[-2]
 

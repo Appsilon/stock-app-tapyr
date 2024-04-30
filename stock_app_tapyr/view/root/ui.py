@@ -50,7 +50,6 @@ def get_dashboard_ui() -> ui.Tag:
             ),
             col_widths=[9, 3],
         ),
-        ui.include_css(app_dir / "styles.css"),
         title="Stock explorer",
         fillable=True,
     )

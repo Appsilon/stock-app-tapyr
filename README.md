@@ -1,20 +1,13 @@
-# Tapyr - Shiny for Python Application Template<a href="https://appsilon.github.io/tapyr-template/"><img src="www/images/tapyr.png" align="right" alt="Tapyr logo" style="height: 140px;"></a>
+# Respiratory Disease: Tapyr Version
 
-> Create and deploy enterprise-ready PyShiny dashboards with ease.
+This repository contains the tapyr migration of [stock-app](https://shiny.posit.co/py/templates/stock-app/), a template app from [shiny templates](https://shiny.posit.co/py/templates/).
 
-## Introduction
+## Explore the app
+The app is deployed at [Appsilon Posit Connect](https://connect.appsilon.com/stock-app-tapyr/).
 
-Tapyr is designed for data scientists and developers seeking a seamless transition from development to deployment, this template uses `poetry` for dependency management and `pytest`/`playwright` for comprehensive app validation/testing/quality assurance.
-Ideal for projects aiming for high-quality code and efficient deployment on Posit Connect.
+## How to run
 
-## Docs
-
-For comprehensive documentation, please visit our [documentation TODO](TODO).
-
-## Getting Started
-
-Check out our get started with `tapyr` [blog post](TOOD).
-
+(This section is copied from the tapyr template)
 ### Using Devcontainer
 
 To ensure a consistent development experience across all environments, we recommend using the [devcontainer](https://code.visualstudio.com/docs/remote/containers) configuration with Visual Studio Code or DevPod for container-based development.

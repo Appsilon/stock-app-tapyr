@@ -1,13 +1,13 @@
 [tool.poetry]
-name = "tapyr_template"
+name = "stock_app_tapyr"
 version = "0.1.0"
 description = ""
 authors = ["Appsilon.com <hello@appsilon.com>"]
 readme = "README.md"
-packages = [{include = "tapyr_template"}]
+packages = [{include = "stock_app_tapyr"}]
 
 [tool.coverage.run]
-source = ["tapyr_template"]
+source = ["stock_app_tapyr"]
 
 [tool.poetry.dependencies]
 python = "^3.10"

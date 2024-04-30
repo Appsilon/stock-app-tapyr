@@ -8,4 +8,4 @@ echo "Running pytest for unit tests..."
 poetry run pytest
 
 echo "Running pyright for type checking..."
-poetry run pyright tapyr_template
+poetry run pyright stock_app_tapyr
